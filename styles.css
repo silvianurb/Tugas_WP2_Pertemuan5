@@ -1,0 +1,25 @@
+/* Gaya Dasar */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Status Tersedia */
+.text-success {
+    color: #28a745;
+}
+
+/* Status Dipinjam */
+.text-danger {
+    color: #dc3545;
+}
