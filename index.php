@@ -39,6 +39,7 @@ $returnDate = strtotime("2024-05-01"); // Mendapatkan tanggal pengembalian buku
                     <th>Tahun Terbit</th>
                     <th>Status</th>
                     <th>Nomor ISBN</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody id="bookList">
@@ -53,6 +54,14 @@ $returnDate = strtotime("2024-05-01"); // Mendapatkan tanggal pengembalian buku
                     // Menampilkan status buku dengan warna hijau jika tersedia dan merah jika dipinjam
                     echo '<td>' . ($book->getStatus() === 'available' ? '<span class="text-success">Tersedia</span>' : '<span class="text-danger">Dipinjam</span>') . '</td>';
                     echo '<td>' . $book->getISBN() . '</td>'; // Menampilkan Nomor ISBN buku
+
+                  // Tombol aksi: Peminjaman, Pengembalian, dan Hapus
+                      echo '<td>';
+                      echo '<button class="btn btn-primary" onclick="borrowBook(\'' . $book->getTitle() . '\')">Pinjam</button>';
+                      echo '<button class="btn btn-success" onclick="returnBook(\'' . $book->getTitle() . '\')">Kembalikan</button>';
+                      echo '<button class="btn btn-danger" onclick="removeBook(\'' . $book->getTitle() . '\')">Hapus</button>';
+                      echo '</td>';
+                  
                     echo '</tr>';
                 }
                 ?>
@@ -79,6 +88,38 @@ $returnDate = strtotime("2024-05-01"); // Mendapatkan tanggal pengembalian buku
         });
     });
 </script>
+
+  <script>
+      // Fungsi untuk melakukan peminjaman buku
+      function borrowBook(title) {
+          // Lakukan iterasi melalui semua baris buku
+          let rows = document.querySelectorAll('#bookList tr');
+          rows.forEach(function(row) {
+              let bookTitle = row.querySelector('td:first-child').textContent;
+              if (bookTitle === title) {
+                  // Ubah status buku menjadi "Dipinjam"
+                  let statusCell = row.querySelector('td:nth-child(4)');
+                  statusCell.innerHTML = '<span class="text-danger">Dipinjam</span>';
+                  return;
+              }
+          });
+      }
+
+      // Fungsi untuk melakukan pengembalian buku
+      function returnBook(title) {
+          // Lakukan iterasi melalui semua baris buku
+          let rows = document.querySelectorAll('#bookList tr');
+          rows.forEach(function(row) {
+              let bookTitle = row.querySelector('td:first-child').textContent;
+              if (bookTitle === title) {
+                  // Ubah status buku menjadi "Tersedia"
+                  let statusCell = row.querySelector('td:nth-child(4)');
+                  statusCell.innerHTML = '<span class="text-success">Tersedia</span>';
+                  return;
+              }
+          });
+      }
+  </script>
 
   <!-- Header -->
   <footer class="text-center mt-5 mb-3">
