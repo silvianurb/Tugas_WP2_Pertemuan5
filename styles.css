@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 800px; 
     margin: 0 auto;
     padding: 20px;
 }
@@ -14,12 +14,22 @@ h1 {
     color: #333;
 }
 
-/* Status Tersedia */
 .text-success {
     color: #28a745;
 }
 
-/* Status Dipinjam */
 .text-danger {
     color: #dc3545;
+}
+
+.container {
+    max-width: 1200px; /* Menambahkan nilai max-width yang lebih besar */
+}
+
+.table {
+    width: 100%; /* Memastikan tabel mengisi lebar kontainer */
+}
+
+button {
+    margin-right: 5px; /* Memberikan jarak antara tombol */
 }
